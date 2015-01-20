@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=Cygwin_4.x-Windows
 CND_DLIB_EXT=dll
-CND_CONF=Release
+CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -64,8 +64,8 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/gaddis_7thed_chap4_prob4.exe: ${OBJEC
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
