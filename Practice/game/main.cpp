@@ -10,15 +10,19 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    short chchoic,weapchoic,homechoic,roll,rolldice;
+    short chchoic,weapchoic,homechoic,roll,rolldice,attack,x=0;
+    unsigned int add1,add2,ans;
     string name;
     srand(time(0));
     rolldice=rand()%6+1;
+    add1=rand()%90+10;
+    add2=rand()%90+10;
     cout<<"Welcome to my game!"<<endl;
     cout<<"Let's begin by creating your character."<<endl;
     cout<<"What is your character's name?"<<endl;
     getline(cin,name);
-    cout<<"Welcome "<<name<<". "<<"What would you like to be?\n1. A Warrior\n2. A Mage\n3. A Thief\n4. An Archer\n5. Quit"<<endl;
+    cout<<"Welcome "<<name<<". "<<"What would you like to be?\n1. A Warrior\n2. A Mage\n3. A Thief\n"
+            "4. An Archer\n5. Quit"<<endl;
     cout<<"Input the number of your preferred character."<<endl;
     cin>>chchoic;
     cout<<endl;
@@ -128,9 +132,25 @@ int main(int argc, char** argv) {
     cout<<" must travel to find the dragon.\nInput 'roll' to roll your dice."<<endl;
     cin>>roll;
     cout<<"You roll a "<<rolldice<<endl;
-    if(rolldice==1)
+    if(rolldice<7){
         cout<<"This means you have a long journey ahead of you."<<endl;
-    else if(rolldice==2)
+        cout<<"You begin traveling through a dark forest. On your travels, you come across a tiger. It looks hungry.\n"
+                "You take out your weapon and ready yourself."<<endl;
+        
+        while(x<3){
+            cout<<"Enter 1 to attack the tiger until it is dead."<<endl;
+            cin>>attack;
+            cout<<"\nKeep attacking!"<<endl;
+            x++;
+        }
+        cout<<"Congratulations! The tiger is now dead."<<endl;
+        cout<<"\nYou safely leave the forest now and must cross a bridge to continue on your journey."<<endl;
+        cout<<"There stands a tall guardian blocking your way. As you approach he asks you a mathematical question"
+                " in order to cross the bridge. He says you only have 10 seconds to answer the question."<<endl;
+        cout<<"Hello. "<<name<<".\n What is "<<add1<<" + "<<add2<<" ?"<<endl;
+        cin>>ans;
+    }
+    /*else if(rolldice==2)
         cout<<"This means you have quite a distance to travel."<<endl;
     else if(rolldice==3)
         cout<<"This means you have a 2 day trek ahead of you"<<endl;
@@ -141,7 +161,6 @@ int main(int argc, char** argv) {
     else if(rolldice==6)
         cout<<"This means you are close enough to the suspected dragon's lair, that a journey is not needed."<<endl;
     
-    
+    */
     return 0;
 }
-
