@@ -6,30 +6,37 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main(int argc, char** argv) {
-    short chchoic,weapchoic,homechoic;
+    short chchoic,weapchoic,homechoic,roll,rolldice;
+    string name;
+    srand(time(0));
+    rolldice=rand()%6+1;
     cout<<"Welcome to my game!"<<endl;
     cout<<"Let's begin by creating your character."<<endl;
-    cout<<"What would you like to be?\n1. A Warrior\n2. A Mage\n3. A Thief\n4. An Archer\n5. Quit"<<endl;
-    cout<<"Input the name of your preferred character."<<endl;
+    cout<<"What is your character's name?"<<endl;
+    getline(cin,name);
+    cout<<"Welcome "<<name<<". "<<"What would you like to be?\n1. A Warrior\n2. A Mage\n3. A Thief\n4. An Archer\n5. Quit"<<endl;
+    cout<<"Input the number of your preferred character."<<endl;
     cin>>chchoic;
+    cout<<endl;
     if(chchoic==1){
         cout<<"Congratulations you are a Warrior!"<<endl;
-        cout<<"Select your weapon!"<<endl;
+        cout<<"\nSelect your weapon!"<<endl;
     }
     else if(chchoic==2){
         cout<<"Congratulations you are a Mage!"<<endl;
-        cout<<"Select your weapon!"<<endl;
+        cout<<"\nSelect your weapon!"<<endl;
     }
     else if(chchoic==3){
         cout<<"Congratulations you are a Thief!"<<endl;
-        cout<<"Select your weapon!"<<endl;
+        cout<<"\nSelect your weapon!"<<endl;
     }
     else if(chchoic==4){
         cout<<"Congratulations you are an Archer!"<<endl;
-        cout<<"Select your weapon!"<<endl;
+        cout<<"\nSelect your weapon!"<<endl;
     }
     else if(chchoic<1 || chchoic>4){
         cout<<"Error. Please enter a number corresponding to the above menu."<<endl;
@@ -43,6 +50,7 @@ int main(int argc, char** argv) {
     cout<<"6. Axe"<<endl;
     cout<<"Select your weapon!"<<endl;
     cin>>weapchoic;
+    cout<<endl;
     switch(weapchoic){
         case 1:{
             cout<<"You now wield a sword!"<<endl;
@@ -73,9 +81,11 @@ int main(int argc, char** argv) {
             break;
         }
     }
+    cout<<endl;
     cout<<"Where do you live?"<<endl;
     cout<<"1. Caverns\n2. Small Village\n3. Castle\n4. Swamp\n5. Forest\n6. You have no home. You wander aimlessly around the world."<<endl;
     cin>>homechoic;
+    cout<<endl;
         switch(homechoic){
         case 1:{
             cout<<"You now live in dark caverns!"<<endl;
@@ -106,7 +116,32 @@ int main(int argc, char** argv) {
             break;
         }
     }
+    cout<<"\n"<<endl;
     cout<<"Here is where we begin our adventure.\n"<<endl;
+    cout<<"--------------------------------------------\n"<<endl;
+    cout<<"You live in a kingdom known only as "<<name<<"-land."<<endl;
+    cout<<"Here, you are considered the greatest dragon slayer in all of the land."<<endl;
+    cout<<"However, word has come about that a new dragon has made its home somewhere in this land.";
+    cout<<" It is your duty to find and slay this dragon to restore peace in the land."<<endl;
+    cout<<"Now in order to begin your adventure, pull out the magic dice that are in your pocket and roll";
+    cout<<" them to see where your journey will begin.\nThe smaller the number you roll, the further you";
+    cout<<" must travel to find the dragon.\nInput 'roll' to roll your dice."<<endl;
+    cin>>roll;
+    cout<<"You roll a "<<rolldice<<endl;
+    if(rolldice==1)
+        cout<<"This means you have a long journey ahead of you."<<endl;
+    else if(rolldice==2)
+        cout<<"This means you have quite a distance to travel."<<endl;
+    else if(rolldice==3)
+        cout<<"This means you have a 2 day trek ahead of you"<<endl;
+    else if(rolldice==4)
+        cout<<"This means you have a 1 day hike to travel."<<endl;
+    else if(rolldice==5)
+        cout<<"This means your adventure is but a horse's gallop away."<<endl;
+    else if(rolldice==6)
+        cout<<"This means you are close enough to the suspected dragon's lair, that a journey is not needed."<<endl;
+    
+    
     return 0;
 }
 
