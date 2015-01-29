@@ -12,8 +12,8 @@ using namespace std;
 
 int main(int argc, char** argv) {
     short chchoic,weapchoic,homechoic,roll,rolldice,dodge,kill,lifepts;
-    unsigned int add1,add2,ans,begTime,endTime,totTime;
-    string name;
+    int add1,add2,ans,begTime,endTime,totTime,wake;
+    string name,message;
     srand(static_cast<unsigned int>(time(0)));
     rolldice=rand()%6+1;
     add1=rand()%90+10;
@@ -168,7 +168,7 @@ int main(int argc, char** argv) {
                 cout<<"You currently have "<<lifepts<<" lifepoints remaining."<<endl;
             }
         }
-    }
+    
         cout<<"\nYou safely leave the forest now and must cross a bridge to continue on your journey."<<endl;
         cout<<"There stands a tall guardian blocking your way. As you approach he asks you a question"
                 " in order to cross the bridge. He says you only have 5 seconds to answer the question."<<endl;
@@ -176,8 +176,9 @@ int main(int argc, char** argv) {
         cout<<"Hello "<<name<<".\n What is "<<add1<<" + "<<add2<<" ?"<<endl;
         cin>>ans;
         endTime=(time(0));
+        totTime=3;
         if(totTime>begTime-endTime){
-            if(ans=add1+add2)
+            if(ans==add1+add2)
                 cout<<"'Correct. You may pass the bridge.'"<<endl;
             else{
                 cout<<"'Incorrect. You may NOT cross the bridge. You may have one more chance to answer a question "
@@ -200,20 +201,137 @@ int main(int argc, char** argv) {
                         }
                     }
                 }
+                else{
+                    cout<<"'You must find another way around the bridge and you lose 1 lifepoint.'"<<endl;
+                            lifepts=lifepts-1;
+                            cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
+                }
             }
         }
-
-    /*else if(rolldice==2)
-        cout<<"This means you have quite a distance to travel."<<endl;
-    else if(rolldice==3)
-        cout<<"This means you have a 2 day trek ahead of you"<<endl;
-    else if(rolldice==4)
+        else{
+            cout<<"You took too long to answer my questions."<<endl;
+            cout<<"'Incorrect. You may NOT cross the bridge. You may have one more chance to answer a question "
+                        "correctly or must seek another way around the bridge, which will cost you a lifepoint for the "
+                        "extra amount of time it will take.'\nInput 1 to try again or 2 to give up a lifepoint and"
+                        "find another way around."<<endl;
+                cin>>ans;
+                if(ans==1){
+                    begTime=(time(0));
+                    cout<<"'Your second and final chance.\nWhat is "<<add1<<" + "<<add2<<" ?"<<endl;
+                    cin>>ans;
+                    endTime=(time(0));
+                    if(totTime>endTime-begTime){
+                        if(ans==add1+add2)
+                            cout<<"'Correct. You may pass the bridge.'"<<endl;
+                        else{
+                            cout<<"'Incorrect. You must find another way around the bridge and you lose 1 lifepoint.'"<<endl;
+                            lifepts=lifepts-1;
+                            cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
+                        }
+                    }
+                }
+        }
+    }
+    /*else if(rolldice<5&&rolldice>2){
         cout<<"This means you have a 1 day hike to travel."<<endl;
-    else if(rolldice==5)
-        cout<<"This means your adventure is but a horse's gallop away."<<endl;
-    else if(rolldice==6)
-        cout<<"This means you are close enough to the suspected dragon's lair, that a journey is not needed."<<endl;
-    
+        cout<<"You see a forest to your left, but manage to traverse it with ease. Then you begin to approach "
+                "a large bridge that blocks your path between yourself and the dragon's lair."<<endl;
+        cout<<"There stands a tall guardian blocking your way. As you approach he asks you a question"
+                    " in order to cross the bridge. He says you only have 5 seconds to answer the question."<<endl;
+        begTime=(time(0));
+        cout<<"Hello "<<name<<".\n What is "<<add1<<" + "<<add2<<" ?"<<endl;
+        cin>>ans;
+        endTime=(time(0));
+        totTime=3;
+        if(totTime>begTime-endTime){
+            if(ans==add1+add2)
+                cout<<"'Correct. You may pass the bridge.'"<<endl;
+            else{
+                cout<<"'Incorrect. You may NOT cross the bridge. You may have one more chance to answer a question "
+                        "correctly or must seek another way around the bridge, which will cost you a lifepoint for the "
+                        "extra amount of time it will take.'\nInput 1 to try again or 2 to give up a lifepoint and"
+                        "find another way around."<<endl;
+                cin>>ans;
+                if(ans==1){
+                    begTime=(time(0));
+                    cout<<"'Your second and final chance.\nWhat is "<<add1<<" + "<<add2<<" ?"<<endl;
+                    cin>>ans;
+                    endTime=(time(0));
+                    if(totTime>endTime-begTime){
+                        if(ans==add1+add2)
+                            cout<<"'Correct. You may pass the bridge.'"<<endl;
+                        else{
+                            cout<<"'Incorrect. You must find another way around the bridge and you lose 1 lifepoint.'"<<endl;
+                            lifepts=lifepts-1;
+                            cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
+                        }
+                    }
+                }
+                else{
+                    cout<<"'You must find another way around the bridge and you lose 1 lifepoint.'"<<endl;
+                            lifepts=lifepts-1;
+                            cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
+                }
+            }
+        }
+        else{
+            cout<<"You took too long to answer my questions."<<endl;
+            cout<<"'Incorrect. You may NOT cross the bridge. You may have one more chance to answer a question "
+                        "correctly or must seek another way around the bridge, which will cost you a lifepoint for the "
+                        "extra amount of time it will take.'\nInput 1 to try again or 2 to give up a lifepoint and"
+                        "find another way around."<<endl;
+                cin>>ans;
+                if(ans==1){
+                    begTime=(time(0));
+                    cout<<"'Your second and final chance.\nWhat is "<<add1<<" + "<<add2<<" ?"<<endl;
+                    cin>>ans;
+                    endTime=(time(0));
+                    if(totTime>endTime-begTime){
+                        if(ans==add1+add2)
+                            cout<<"'Correct. You may pass the bridge.'"<<endl;
+                        else{
+                            cout<<"'Incorrect. You must find another way around the bridge and you lose 1 lifepoint.'"<<endl;
+                            lifepts=lifepts-1;
+                            cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
+                        }
+                    }
+                }
+        }
+        cout<<"Once on the other side of the bridge, the dragon's lair is finally in sight."<<endl;
+    }
+    else if(rolldice<3&&rolldice>0){
+        cout<<"This means you are close enough to the suspected dragon's lair that a journey is not needed."<<endl;
+    }
+    cout<<"You cautiously enter the dragon's lair."<<endl;
+    cout<<"Roll your dice to determine how you find the dragon."<<endl;
+    cin>>roll;
+    cout<<rolldice<<endl;
+    if(rolldice==6){
+        cout<<"You find the dragon asleep. If your have all of your lifepoints, you should be able to silently slay the dragon."<<endl;
+        if(lifepts==5){
+            cout<<"You do, in fact, have full lifepoints. Enter kill to slay the dragon!"<<endl;
+            cin>>kill;
+            cout<<"It wakes up in screaming pain as it slowly dies until the dragon is no more."<<endl;
+        }
+        else{
+            cout<<"You don't have a full amount of lifepoints.\nHowever, you notice strange words on the wall behind the dragon."<<endl;
+            cout<<"It says:\n\t17,10,13,23  14,24  6,28,10,24,20,18,10 \nWhen decoded, this chant will kill the dragon."
+                    "\nThere is only one clue to decode this message: A=6"<<endl;
+            cout<<"Enter the message now."<<endl;
+            getline(cin,message);
+            cout<<"You said "<<message<<endl;
+            if(message=="lehr is awesome"){
+                cout<<"You cracked the code! Now that you sing it, the dragon appears to die until it no loner moves."<<endl;
+            }
+            else{
+                while(message != "lehr is awesome",wake<=2){       
+                    cout<< "Error: wrong code. The dragon moves slightly. Try again.";
+                    getline(cin,message);
+                    wake++;
+                }
+            }
+         }
+    }
     */
     return 0;
 }

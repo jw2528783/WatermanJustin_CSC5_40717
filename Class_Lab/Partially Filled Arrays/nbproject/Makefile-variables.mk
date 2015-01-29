@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin_4.x-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin_4.x-Windows
-CND_ARTIFACT_NAME_Debug=practice_3
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/practice_3
+CND_ARTIFACT_NAME_Debug=partially_filled_arrays
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/partially_filled_arrays
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin_4.x-Windows/package
-CND_PACKAGE_NAME_Debug=practice3.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/package/practice3.tar
+CND_PACKAGE_NAME_Debug=partiallyfilledarrays.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_4.x-Windows/package/partiallyfilledarrays.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin_4.x-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_4.x-Windows
-CND_ARTIFACT_NAME_Release=practice_3
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_4.x-Windows/practice_3
+CND_ARTIFACT_NAME_Release=partially_filled_arrays
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_4.x-Windows/partially_filled_arrays
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin_4.x-Windows/package
-CND_PACKAGE_NAME_Release=practice3.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin_4.x-Windows/package/practice3.tar
+CND_PACKAGE_NAME_Release=partiallyfilledarrays.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin_4.x-Windows/package/partiallyfilledarrays.tar
 #
 # include compiler specific variables
 #
