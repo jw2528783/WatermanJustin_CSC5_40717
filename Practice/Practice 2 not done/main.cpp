@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     cout<<"Input a 4 digit number.\nAnd yes, 0000 does count as a 4 digit number."<<endl;
     cin>>num;
     num1=num%10,num2=(num%100)/10,num3=(num%1000)/100,num4=(num%10000)/1000;
-    cout<<num4<<" ";
+    cout<<num4+0<<" ";
     for(int x=1;x<=num4;x++)
         cout<<"*";
     cout<<endl<<num3+0<<" ";
