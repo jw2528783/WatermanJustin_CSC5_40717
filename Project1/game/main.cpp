@@ -246,14 +246,19 @@ int main(){
                             cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
                         }
                     }
+                    else{
+                        cout<<"'Incorrect. You must find another way around the bridge and you lose 1 lifepoint.'"<<endl;
+                        lifepts=lifepts-1;
+                        cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
+                    } 
                 }
                 else{
                     cout<<"'You must find another way around the bridge and you lose 1 lifepoint.'"<<endl;
                     lifepts=lifepts-1;
                     cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
                 }
-            }
-        }
+              }
+           }
         else{
             cout<<"You took too long to answer my questions."<<endl;
             cout<<"'Incorrect. You may NOT cross the bridge. You may have one more chance to answer a question "
@@ -317,6 +322,11 @@ int main(){
                             lifepts=lifepts-1;
                             cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
                         }
+                    }
+                    else{
+                        cout<<"'You took too long. You must find another way around the bridge and you lose 1 lifepoint.'"<<endl;
+                        lifepts=lifepts-1;
+                        cout<<"[Current lifepoints "<<lifepts<<" ]"<<endl;
                     }
                 }
                 else{
