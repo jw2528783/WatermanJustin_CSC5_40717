@@ -1,4 +1,4 @@
-Your name is j. 
+Your name is J. 
 
 
 You are a mage. 
@@ -13,5 +13,7 @@ You live in a small village.
 Your current lifepoints are 5. 
 
 
-Your current lifepoints are 4. 
+Your current lifepoints are 5. 
+
+Your current lifepoints are 5. 
 
