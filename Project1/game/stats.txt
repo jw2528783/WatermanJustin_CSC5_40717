@@ -1,19 +1,17 @@
-Your name is J. 
+Your name is Justin. 
 
 
-You are a mage. 
+You are an Archer. 
 
 
-You wield a bow. 
+You wield an axe. 
 
 
-You live in a small village. 
-
-
-Your current lifepoints are 5. 
+You now have no home and wander from land to land. 
 
 
 Your current lifepoints are 5. 
 
-Your current lifepoints are 5. 
+
+Your current lifepoints are 2. 
 
