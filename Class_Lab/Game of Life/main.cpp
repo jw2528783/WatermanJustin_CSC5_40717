@@ -22,7 +22,7 @@ int cntNbor(char [][COL],int,char,int,int);
 int main(int argc, char** argv) {
     const int ROW=10;
     char array[ROW][COL];
-    int nGen=1;
+    int nGen=10;
     //Fill Array
     filAray(array,ROW,'*');
     //Print Array without Glider
@@ -31,11 +31,11 @@ int main(int argc, char** argv) {
     inject(array,4,13,'X');
     //Print Glider
     prntAry(array,ROW);
-    pause(1);
+    //pause(1);
     //Game of Life for generations stipulated
     for(int gen=1;gen<=nGen;gen++){
         gnratn(array,ROW,'*','X');
-        pause(1);
+        //pause(1);
     }
     return 0;
 }
