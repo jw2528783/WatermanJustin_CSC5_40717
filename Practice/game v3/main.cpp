@@ -526,7 +526,7 @@ int dg65(string name,short lifepts){
     string mssgans;
     short kill;
     unsigned int wake=1,guess=1;
-    int dum1,dum2,dum3,dum4,dum5;
+    int size=10,perLine=10;
     ofstream output;
     cout<<"You find the dragon asleep. If your have all of your lifepoints, you should be able to silently slay the dragon."<<endl;
     //If user has full lifepoints, he can slay dragon 
