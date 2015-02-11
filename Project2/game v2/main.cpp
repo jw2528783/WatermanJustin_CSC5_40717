@@ -24,17 +24,24 @@ int roll43(string);
 int dg65(string,short);
 int dg43(string,short);
 int dg21(string,short);
+void filAray(int [],int [],int);
+void prntAry(const int [],int,int);
+void filAray(int [],int );
+void markSrt(int [],int);
+void prntAry(const int [],int,int);
+void swap(int &,int &);
+void fileAry(const int [],int,int);
+void prntfil(const int [],int,int);
+void sort();
+void markSrt(int [],int);
 //Execution
 int main(){
     //Generate random seed
     srand(static_cast<unsigned int>(time(0)));
     //Declare Variables
-    short lifepts;
+    short lifepts=5;
     string name,roll,mssgans;
-    int dicegen=rand()%6+1;
-    int add1=rand()%100;
-    int add2=rand()%100;
-    int dum1,dum2,dum3,dum4,dum5;
+    int dicegen=rand()%6+1, add1=rand()%100, add2=rand()%100;
     fstream output;
     cout<<"Welcome to my game!"<<endl;
     cout<<"What is your character's name? (Just first name, please)"<<endl;
@@ -50,45 +57,29 @@ int main(){
     cout<<" them to see where your journey will begin.\nYou also have 5 Lifepoints. If damaged in combat"
             "or attack or wounded, you will lose a lifepoint.\nIf you reach 0 Lifepoints, then"
             " GAME OVER\nThe smaller the number you roll, the further you";
-    lifepts=5;
     cout<<" must travel to find the dragon.\n"<<endl;
     cout<<"Input 'roll' to roll your dice."<<endl;
     //Roll Dice
     cin>>roll;
     cout<<"You roll a "<<dicegen<<endl;
-    if(dicegen<7&&dicegen>4){
-        lifepts=roll65(name);
-        //cout<<"Your current lifepoints are "<<roll65(name)<<endl;
-    }
-    //If dice roll was 3 or 4
-    if(dicegen<5&&dicegen>2){
-        lifepts=roll43(name);
-        //cout<<"Your current lifepoints are "<<roll43(name)<<endl;
-    }
+    //If dice roll is 5 or 6
+    if(dicegen<7&&dicegen>4)lifepts=roll65(name);
+    //If dice roll is 3 or 4
+    if(dicegen<5&&dicegen>2)lifepts=roll43(name);
     //If dice roll is 1 or 2
-    if(dicegen<3&&dicegen>0){
+    if(dicegen<3&&dicegen>0)
         cout<<"This means you are close enough to the suspected dragon's lair that a journey is not needed."<<endl;
-    }
     cout<<"You finally reach the dragon's lair.\nNow you cautiously enter the dragon's lair."<<endl;
     cout<<"Roll your dice to determine how you find the dragon."<<endl;
     //Roll dice
     cin>>roll;
     cout<<dicegen<<endl;
     //If dice roll is 5 or 6
-    if(dicegen<7&&dicegen>4){
-        lifepts=dg65(name,lifepts);
-        //cout<<"Your current lifepoints are "<<dg65(name,lifepts)<<endl;
-    }
+    if(dicegen<7&&dicegen>4)lifepts=dg65(name,lifepts);
     //If dice roll is 3 or 4
-    if(dicegen<5&&dicegen>2){
-        lifepts=dg43(name,lifepts);
-        //cout<<"Your current lifepoints are "<<dg43(name,lifepts)<<endl;
-    }
+    if(dicegen<5&&dicegen>2)lifepts=dg43(name,lifepts);
     //If dice roll is 1 or 2
-    if(dicegen<3&&dicegen>0){
-        lifepts=dg21(name,lifepts);
-        //cout<<"Your current lifepoints are "<<dg21(name,lifepts)<<endl;
-    }
+    if(dicegen<3&&dicegen>0)lifepts=dg21(name,lifepts);
     cout<<"[Your current lifepoints are "<<lifepts<<" ]"<<endl;
     //Output lifepoints to text file
     output<<"Your current lifepoints are "<<lifepts<<". \r\n"<<endl;
@@ -100,8 +91,8 @@ int main(){
     }
     //If user has more than zero lifepoints
     else{
-        cout<<"Congratulations "<<name<<"! You beat the dragon, saved the kingdom, and won my game. Thank you for playing!"<<endl;
-        cout<<"Your score is "<<lifepts<<". This is based off of your lifepoints."<<endl;
+        cout<<"Congratulations "<<name<<"! You beat the dragon, saved the kingdom, and won my game."
+                " Thank you for playing\nYour score is "<<lifepts<<". This is based off of your lifepoints."<<endl;
     }
     //Close file
     output.close();
@@ -526,7 +517,6 @@ int dg65(string name,short lifepts){
     string mssgans;
     short kill;
     unsigned int wake=1,guess=1;
-    int dum1,dum2,dum3,dum4,dum5;
     ofstream output;
     cout<<"You find the dragon asleep. If your have all of your lifepoints, you should be able to silently slay the dragon."<<endl;
     //If user has full lifepoints, he can slay dragon 
@@ -569,70 +559,105 @@ int dg65(string name,short lifepts){
     output<<"Your current lifepoints are "<<lifepts<<". \r\n"<<endl;
 }
 int dg43(string name,short lifepts){
-    char ans10;
+    char ans10,ans;
     unsigned short dgnans;
     unsigned int wake=1,guess=1;
     float dgnnum=rand()%10+1;
     string mssgans;
     ofstream output;
-    int dum1,dum2,dum3,dum4,dum5;
-    cout<<"You find the dragon asleep. He wakes up to your presence. However, he says he has a game for you.\nIf you can guess his number,"
+    const int ROW=10;
+    int pFilRow=10,perLine=10;
+    int array[ROW]={};
+    int swap1,i=0;
+    output.open("random.txt");
+    filAray(array,pFilRow);
+    cout<<"You find the dragon asleep. He wakes up to your presence. However, he says he has two games for you.\nThe first game\nIf you can guess his number,"
             " then he will let you live and promise never to return to your kingdom. If you lose, he will kill you."<<endl;
-    cout<<"Do you accept this game? Enter Y for yes, or N for no."<<endl;
-    //Answer yes or no
-    cin>>ans10;
-    //If user said yes
-    if(ans10=='Y'||ans10=='y'){
-        cout<<"The dragon says 'I am thinking of a number between one and ten. What is it?\nYou get 4 guesses.'"<<endl;
+    cout<<"The dragon says 'I am thinking of a number between one and ten. What is it?\nYou get 4 guesses.'"<<endl;
+    cin>>dgnans;
+    //Loop for guessing the dragon's number
+    while(dgnans!=dgnnum&&guess<=4){
+        cout<<"'Incorrect ! Try again!'"<<endl;
         cin>>dgnans;
-        //Loop for guessing the dragon's number
-        while(dgnans!=dgnnum&&guess<=4){
-            cout<<"'Incorrect ! Try again!'"<<endl;
-            cin>>dgnans;
-            guess++;
-        }
-        //If user guessed number in 4 tries or less
-        if(guess<=4)
-            cout<<"'You guessed my number. You may leave and I will never return.'"<<endl;
-        //If it took more than 4 tries
-        else if(guess>=5){
-            cout<<"'You did not guess my number. You will die!'"<<endl;
-            //If user has less than 4 lifepoints
-            if(lifepts<4){
-                cout<<"The dragon took the remainder of your life points. You died. GAME OVER."<<endl;
-                //End program
-                return 0;
-            }
-            //If user has more than 4 lifepoints
-            else{
-                cout<<"You survived the dragon's attack, but at the cost of 3 lifepoints. While the dragon stops to prepare for a "
-                        "second attack, you manage to slay the dragon.\nIt is dead!"<<endl;
-                //Take away 3 lifepoints
-                lifepts=lifepts-3;
-            }
-        }     
+        guess++;
     }
-    //If user said no
-    else{
+    //If user guessed number in 4 tries or less
+    if(guess<=4)
+        cout<<"'You guessed my number.'"<<endl;
+    //If it took more than 4 tries
+    else if(guess>4){
+        cout<<"'You did not guess my number. You will die!'"<<endl;
         //If user has less than 4 lifepoints
         if(lifepts<4){
             cout<<"The dragon took the remainder of your life points. You died. GAME OVER."<<endl;
             //End program
             return 0;
         }
-        //If user has at least 4 lifepoints
+        //If user has more than 4 lifepoints
         else{
-            cout<<"You survived the dragon's attack, but at the cost of 3 lifepoints. While the dragon stops to prepare for a "
-                    "second attack, you manage to slay the dragon.\nIt is dead!"<<endl;
+            cout<<"You survived the dragon's attack, but at the cost of 3 lifepoints."<<endl;
             //Take away 3 lifepoints
             lifepts=lifepts-3;
         }
+    }     
+    //If user has less than 4 lifepoints
+    if(lifepts<4){
+        cout<<"The dragon took the remainder of your life points. You died. GAME OVER."<<endl;
+        //End program
+        return 0;
     }
+    //If user has at least 4 lifepoints
+    else{
+        cout<<"You survived the dragon's attack, but at the cost of 3 lifepoints."<<endl;
+        //Take away 3 lifepoints
+        lifepts=lifepts-3;
+    }
+    cout<<"'Now for the second and final test.'"<<endl;
+    cout<<"I will present a block of numbers to you and you must sort them in order.Try to do so in the least amount of swaps possible."<<endl;
+    cout<<"\nPOSITION   0  1  2  3  4  5  6  7  8  9  \n=========================================\n";
+    fileAry(array,pFilRow,perLine);
+    prntfil(array,pFilRow,perLine);
+    cout<<endl<<"Which would you like to switch it for? Enter both numbers you wish to switch with by inputing the corresponding"
+            "position numbers above the desired unsorted numbers."<<endl;
+    while(ans!='y'&&ans!='Y'){
+        cin>>swap1>>i;
+        swap(array[i],array[swap1]);
+        cout<<"\nPOSITION   0  1  2  3  4  5  6  7  8  9  \n=========================================\n";
+        prntAry(array,pFilRow,perLine);
+        cout<<"Are you done? Enter 'y' for Yes. Enter any other key to continue sorting. Then enter your next number to sort."<<endl;
+        cin>>ans;
+    }
+    cout<<"Ok. Now you are done. I'll compare my answer with yours."<<endl;
+    ans='N';
+    for(int i=0;i<pFilRow-1;i++){
+        if(array[i]>array[i+1])
+            ans='Y';
+    }
+    cout<<"This is how it should have been sorted."<<endl;
+    fileAry(array,pFilRow,perLine);
+    markSrt(array,pFilRow);
+    prntAry(array,pFilRow,perLine);
+    if(ans=='Y'){
+        cout<<"You made a mistake."<<endl;
+        cout<<"Prepare to die!"<<endl;
+        if(lifepts<4){
+            cout<<"You lose all of your remaining lifepoints. GAME OVER"<<endl;
+            return 0;
+        }
+        else{
+            cout<<"You survive the attack. But at the cost of one lifepoint."<<endl;
+            lifepts=lifepts-1;
+        }
+    }
+    else
+        cout<<"You are correct!"<<endl;
+    if(guess<=4||ans!='Y')
+        cout<<"You have beaten at least one of my games. I will leave your kingdom and never return."<<endl;
+    output.close();
     return lifepts;
 }
 int dg21(string name,short lifepts){
     ofstream output;
-    int dum1,dum2,dum3,dum4,dum5;
     cout<<"You enter his lair, but the dragon is ready for you and attacks you as soon as it sees you."<<endl;
     //If user has less than 4 lifepoints
     if(lifepts<4){
@@ -648,4 +673,64 @@ int dg21(string name,short lifepts){
         lifepts=lifepts-3;
     }
     return lifepts;
+}
+void filAray(int a[],int n){
+    for(int i=0;i<n;i++){
+        a[i]=rand()%10+1;
+    }
+}
+void prntAry(const int a[],int n,int perLine){
+    cout<<endl<<"           ";
+    for(int i=0;i<n;i++){
+        if(a[i]<10)
+            cout<<setw(1)<<a[i]<<"  ";
+        else
+            cout<<setw(2)<<a[i]<<" ";
+        if(i%perLine==(perLine-1))cout<<endl;
+    }
+    cout<<endl;
+}
+void swap(int &a,int &b){
+    if(a==b)
+        a=a,b=b;
+    else{
+        a=a^b;
+        b=a^b;
+        a=a^b;
+    }
+}
+void fileAry(const int a[],int n,int perLine){
+    ofstream output;
+    output.open("random.txt");
+    for(int i=0;i<n;i++){
+        if(a[i]<10)
+            output<<setw(1)<<a[i]<<"  ";
+        else
+            output<<setw(2)<<a[i]<<" ";
+        if(i%perLine==(perLine-1))output<<endl;
+    }
+    output.close();
+}
+void prntfil(const int a[],int n,int perLine){
+    ifstream input ("random.txt");
+    string line;
+    getline(input,line);
+    cout<<endl<<"           ";
+    cout<<line;
+    cout<<endl;
+}
+void markSrt(int a[],int n){
+    //Apply swapMin from beginning to end
+    for(int i=0;i<n-1;i++){
+        //Swap elements at the top of the list
+        //with the minimum
+        for(int j=i+1;j<n;j++){
+            //Swap individual elements with smaller
+            if(a[i]>a[j]){
+                int temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+    }
 }

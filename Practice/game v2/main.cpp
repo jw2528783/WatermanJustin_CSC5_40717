@@ -46,6 +46,7 @@ int main(){
     cout<<"Welcome to my game!"<<endl;
     cout<<"What is your character's name? (Just first name, please)"<<endl;
     cin>>name;
+    //Create character
     charcre(name);
     cout<<"Here is where we begin our adventure.\n"<<endl;
     cout<<"--------------------------------------------\n"<<endl;
@@ -75,11 +76,11 @@ int main(){
     cin>>roll;
     cout<<dicegen<<endl;
     //If dice roll is 5 or 6
-    //if(dicegen<7&&dicegen>4)lifepts=dg65(name,lifepts);
+    if(dicegen<7&&dicegen>4)lifepts=dg65(name,lifepts);
     //If dice roll is 3 or 4
-    if(dicegen<7&&dicegen>0)lifepts=dg43(name,lifepts);
+    if(dicegen<5&&dicegen>2)lifepts=dg43(name,lifepts);
     //If dice roll is 1 or 2
-    //if(dicegen<3&&dicegen>0)lifepts=dg21(name,lifepts);
+    if(dicegen<3&&dicegen>0)lifepts=dg21(name,lifepts);
     cout<<"[Your current lifepoints are "<<lifepts<<" ]"<<endl;
     //Output lifepoints to text file
     output<<"Your current lifepoints are "<<lifepts<<". \r\n"<<endl;
@@ -106,6 +107,7 @@ void charcre(string name){
     cout<<"Welcome "<<name<<". "<<"What would you like to be?\n1."<<setw(2)<<"A Warrior\n2."<<setw(2)<<"A Mage\n3."<<setw(2)<<"A Thief\n"
             "4."<<setw(2)<<"An Archer\n"<<endl;
     cout<<"Input the number of your preferred character."<<endl;
+    //Choice your type of character
     cin>>chchoic;
     cout<<endl;
     if(chchoic==1){
@@ -135,6 +137,7 @@ void charcre(string name){
     cout<<"5. Mace"<<endl;
     cout<<"6. Axe"<<endl;
     cout<<"Select your weapon!"<<endl;
+    //Choose your weapon
     cin>>wpchoic;
     cout<<endl;
     switch(wpchoic){
@@ -171,6 +174,7 @@ void charcre(string name){
     cout<<"Where do you live?"<<endl;
     cout<<"1. Caverns\n2. Small Village\n3. Castle\n4. Swamp\n5. Forest\n"
             "6. You have no home. You wander aimlessly around the world."<<endl;
+    //Choose your home
     cin>>hmchoic;
     cout<<endl;
     switch(hmchoic){
@@ -204,7 +208,9 @@ void charcre(string name){
         }
     }
     cout<<"\n"<<endl;
+    //Write character info to a file
     fileout(name,chchoic,wpchoic,hmchoic);
+    //Exit
 }
 void fileout(string name,short chchoic,short wpchoic,short hmchoic){
     short lifepts=5;
@@ -212,6 +218,7 @@ void fileout(string name,short chchoic,short wpchoic,short hmchoic){
     cout<<"[All of your character information as well as your lifepoints will be recorded to a text file called 'stats'.]"<<endl;
     //Output to stats file
     output.open("stats.txt");
+    //Output the corresponding character trait to stats file
     output<<"Your name is "<<name<<". \r\n"<<endl<<endl;
     if(chchoic==1)
         output<<"You are a warrior. \r\n"<<endl<<endl;
@@ -245,6 +252,7 @@ void fileout(string name,short chchoic,short wpchoic,short hmchoic){
         output<<"You live in a green forest. \r\n"<<endl<<endl;
     else if(hmchoic==6)
         output<<"You now have no home and wander from land to land. \r\n"<<endl<<endl;
+    //Exit
 }
 int roll65(string name){
     unsigned int ans,ans1,ans3,ans4,ans5,ans6,ans7,begTime,endTime,totTime;
@@ -397,6 +405,7 @@ int roll65(string name){
         }
         //Output lifepoints to text file
         output<<"Your current lifepoints are "<<lifepts<<". \r\n"<<endl;
+        //Exit
         return lifepts;
     }
 int roll43(string name){
@@ -511,13 +520,13 @@ int roll43(string name){
     cout<<"Once on the other side of the bridge, the dragon's lair is finally in sight."<<endl;
     //Output lifepoints to text file
     output<<"Your current lifepoints are "<<lifepts<<". \r\n"<<endl;
+    //Exit
     return lifepts;
 }
 int dg65(string name,short lifepts){
     string mssgans;
     short kill;
     unsigned int wake=1,guess=1;
-    int size=10,perLine=10;
     ofstream output;
     cout<<"You find the dragon asleep. If your have all of your lifepoints, you should be able to silently slay the dragon."<<endl;
     //If user has full lifepoints, he can slay dragon 
@@ -558,6 +567,7 @@ int dg65(string name,short lifepts){
         output<<"Your current lifepoints are "<<lifepts<<". \r\n"<<endl;
     }
     output<<"Your current lifepoints are "<<lifepts<<". \r\n"<<endl;
+    //Exit
 }
 int dg43(string name,short lifepts){
     char ans10,ans;
@@ -570,7 +580,9 @@ int dg43(string name,short lifepts){
     int pFilRow=10,perLine=10;
     int array[ROW]={};
     int swap1,i=0;
+    //Open file to store random number array
     output.open("random.txt");
+    //Fill array
     filAray(array,pFilRow);
     cout<<"You find the dragon asleep. He wakes up to your presence. However, he says he has two games for you.\nThe first game\nIf you can guess his number,"
             " then he will let you live and promise never to return to your kingdom. If you lose, he will kill you."<<endl;
@@ -616,35 +628,45 @@ int dg43(string name,short lifepts){
     cout<<"'Now for the second and final test.'"<<endl;
     cout<<"I will present a block of numbers to you and you must sort them in order.Try to do so in the least amount of swaps possible."<<endl;
     cout<<"\nPOSITION   0  1  2  3  4  5  6  7  8  9  \n=========================================\n";
+    //Read file
     fileAry(array,pFilRow,perLine);
+    //Print the random number array from the file
     prntfil(array,pFilRow,perLine);
     cout<<endl<<"Which would you like to switch it for? Enter both numbers you wish to switch with by inputing the corresponding"
             "position numbers above the desired unsorted numbers."<<endl;
+    //Loop to keep switching/sorting numbers
     while(ans!='y'&&ans!='Y'){
         cin>>swap1>>i;
         swap(array[i],array[swap1]);
         cout<<"\nPOSITION   0  1  2  3  4  5  6  7  8  9  \n=========================================\n";
         prntAry(array,pFilRow,perLine);
         cout<<"Are you done? Enter 'y' for Yes. Enter any other key to continue sorting. Then enter your next number to sort."<<endl;
+        //Prompt to end loop
         cin>>ans;
     }
     cout<<"Ok. Now you are done. I'll compare my answer with yours."<<endl;
-    i=0;
     ans='N';
+    //Loop used to check if user correctly sorted the number array
     for(int i=0;i<pFilRow-1;i++){
+        //If first number is smaller than second number
         if(array[i]>array[i+1])
             ans='Y';
     }
     cout<<"This is how it should have been sorted."<<endl;
+    //Read array from file
     fileAry(array,pFilRow,perLine);
+    //Use MarkSort to correctly sort all of the numbers.
     markSrt(array,pFilRow);
+    //Print the correct sorted array
     prntAry(array,pFilRow,perLine);
+    //Output if user made error when sortin
     if(ans=='Y'){
         cout<<"You made a mistake."<<endl;
         cout<<"Prepare to die!"<<endl;
+        //If lifepoints < 4
         if(lifepts<4){
             cout<<"You lose all of your remaining lifepoints. GAME OVER"<<endl;
-            return;
+            return 0;
         }
         else{
             cout<<"You survive the attack. But at the cost of one lifepoint."<<endl;
@@ -653,14 +675,15 @@ int dg43(string name,short lifepts){
     }
     else
         cout<<"You are correct!"<<endl;
+    //If user won at least one of the mini games.
     if(guess<=4||ans!='Y')
         cout<<"You have beaten at least one of my games. I will leave your kingdom and never return."<<endl;
     output.close();
+    //Exit
     return lifepts;
 }
 int dg21(string name,short lifepts){
     ofstream output;
-    int dum1,dum2,dum3,dum4,dum5;
     cout<<"You enter his lair, but the dragon is ready for you and attacks you as soon as it sees you."<<endl;
     //If user has less than 4 lifepoints
     if(lifepts<4){
@@ -675,35 +698,48 @@ int dg21(string name,short lifepts){
         //Take away 3 lifepoints
         lifepts=lifepts-3;
     }
+    //Exit
     return lifepts;
 }
 void filAray(int a[],int n){
+    //Loop to generate random numbers from 1 to 10
     for(int i=0;i<n;i++){
         a[i]=rand()%10+1;
     }
+    //Exit
 }
 void prntAry(const int a[],int n,int perLine){
+    //Print the array
     cout<<endl<<"           ";
     for(int i=0;i<n;i++){
+        //If number is single digit, use a 2 space gap between numbers.
         if(a[i]<10)
             cout<<setw(1)<<a[i]<<"  ";
+        //Else use one space gap
         else
             cout<<setw(2)<<a[i]<<" ";
         if(i%perLine==(perLine-1))cout<<endl;
     }
     cout<<endl;
+    //Exit
 }
 void swap(int &a,int &b){
+    //Swap two desired numbers
     if(a==b)
+        //If you don't want to swap numbers, or if the numbers are equal to each other
+        //      then do nothing
         a=a,b=b;
     else{
+        //Swap
         a=a^b;
         b=a^b;
         a=a^b;
     }
+    //Exit
 }
 void fileAry(const int a[],int n,int perLine){
     ofstream output;
+    //Open text file
     output.open("random.txt");
     for(int i=0;i<n;i++){
         if(a[i]<10)
@@ -712,23 +748,27 @@ void fileAry(const int a[],int n,int perLine){
             output<<setw(2)<<a[i]<<" ";
         if(i%perLine==(perLine-1))output<<endl;
     }
+    //Close text file
     output.close();
+    //Exit
 }
 void prntfil(const int a[],int n,int perLine){
+    //Read numbers from a file
     ifstream input ("random.txt");
+    //Read entire line of numbers as a string
     string line;
     getline(input,line);
     cout<<endl<<"           ";
     cout<<line;
     cout<<endl;
+    //Exit
 }
 void markSrt(int a[],int n){
-    //Apply swapMin from beginning to end
+    //Apply swap smallest from beginning to end
     for(int i=0;i<n-1;i++){
-        //Swap elements at the top of the list
-        //with the minimum
+        //Swap elements at the top with smallest
         for(int j=i+1;j<n;j++){
-            //Swap individual elements with smaller
+            //Swap numbers with smaller ones
             if(a[i]>a[j]){
                 int temp=a[i];
                 a[i]=a[j];
@@ -736,4 +776,5 @@ void markSrt(int a[],int n){
             }
         }
     }
+    //Exit
 }
