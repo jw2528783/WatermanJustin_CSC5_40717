@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Justin Waterman
  * Created on January 22, 2015, 11:22 AM
- *      Game V2
+ *      Game v2
  *              Modified to use functions, arrays, and sorting
  */
 
@@ -17,23 +17,19 @@ using namespace std;
 //User Libraries
 //Global Constants
 //Function Prototypes
-void charcre(string);
-void fileout(string,short,short,short);
-int roll65(string);
-int roll43(string);
-int dg65(string,short);
-int dg43(string,short);
-int dg21(string,short);
-void filAray(int [],int [],int);
-void prntAry(const int [],int,int);
-void filAray(int [],int );
-void markSrt(int [],int);
-void prntAry(const int [],int,int);
-void swap(int &,int &);
-void fileAry(const int [],int,int);
-void prntfil(const int [],int,int);
-void sort();
-void markSrt(int [],int);
+void charcre(string); //Character Creation
+void fileout(string,short,short,short); //Send character stats out to file
+int roll65(string); //If roll is 6 or 5
+int roll43(string); //If roll is 3 or 4
+int dg65(string,short); //If roll is 6 or 5
+int dg43(string,short); //If roll is 3 or 4
+int dg21(string,short); //If roll is 1 or 2
+void prntAry(const int [],int,int); //Print array
+void filAray(int [],int ); //Fill array
+void markSrt(int [],int); //Sorting
+void swap(int &,int &); //Swap two numbers
+void fileAry(const int [],int,int); //Read file
+void prntfil(const int [],int,int); //Print file
 //Execution
 int main(){
     //Generate random seed
@@ -622,7 +618,8 @@ int dg43(string name,short lifepts){
     //Print the random number array from the file
     prntfil(array,pFilRow,perLine);
     cout<<endl<<"Which would you like to switch it for? Enter both numbers you wish to switch with by inputing the corresponding"
-            "position numbers above the desired unsorted numbers."<<endl;
+            " position numbers above the desired unsorted numbers."<<endl;
+    cout<<"Only enter the top position numbers."
     //Loop to keep switching/sorting numbers
     while(ans!='y'&&ans!='Y'){
         cin>>swap1>>i;
