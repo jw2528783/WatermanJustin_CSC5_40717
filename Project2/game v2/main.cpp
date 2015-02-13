@@ -24,7 +24,7 @@ int roll43(string); //If roll is 3 or 4
 int dg65(string,short); //If roll is 6 or 5
 int dg43(string,short); //If roll is 3 or 4
 int dg21(string,short); //If roll is 1 or 2
-void prntAry(const int [],int,int); //Print array
+void prntAry(const int [],int=10,int=10); //Print array
 void filAray(int [],int ); //Fill array
 void markSrt(int [],int); //Sorting
 void swap(int &,int &); //Swap two numbers
@@ -250,7 +250,7 @@ void fileout(string name,short chchoic,short wpchoic,short hmchoic){
     //Exit
 }
 int roll65(string name){
-    unsigned int ans,ans1,ans3,ans4,ans5,ans6,ans7,begTime,endTime,totTime;
+    unsigned int ans1,ans3,ans4,ans5,ans6,ans7,begTime,endTime,totTime;
     int add1=rand()%100, add2=rand()%100;
     short dodge,kill,lifepts=5;
     fstream output;
@@ -404,9 +404,9 @@ int roll65(string name){
         return lifepts;
     }
 int roll43(string name){
-    unsigned int ans,ans1,ans3,ans4,ans5,ans6,ans7,begTime,endTime,totTime;
+    unsigned int ans,begTime,endTime,totTime;
     int add1=rand()%100, add2=rand()%100;
-    short dodge,kill,lifepts=5;
+    short lifepts=5;
     fstream output;
     cout<<"This means you have a 1 day hike to travel."<<endl;
     cout<<"You see a forest to your left, but manage to traverse it with ease. Then you begin to approach "
@@ -611,7 +611,7 @@ int dg43(string name,short lifepts){
         }
     }     
     cout<<"'Now for the second and final test.'"<<endl;
-    cout<<"I will present a block of numbers to you and you must sort them in order.Try to do so in the least amount of swaps possible."<<endl;
+    cout<<"I will present a block of numbers to you and you must sort them in order. Try to do so in the least amount of swaps possible."<<endl;
     cout<<"\nPOSITION   0  1  2  3  4  5  6  7  8  9  \n=========================================\n";
     //Read file
     fileAry(array,pFilRow,perLine);
@@ -619,13 +619,13 @@ int dg43(string name,short lifepts){
     prntfil(array,pFilRow,perLine);
     cout<<endl<<"Which would you like to switch it for? Enter both numbers you wish to switch with by inputing the corresponding"
             " position numbers above the desired unsorted numbers."<<endl;
-    cout<<"Only enter the top position numbers."
+    cout<<"Only enter the top position numbers that correspond to the unsorted number below them."<<endl;
     //Loop to keep switching/sorting numbers
     while(ans!='y'&&ans!='Y'){
         cin>>swap1>>i;
         swap(array[i],array[swap1]);
         cout<<"\nPOSITION   0  1  2  3  4  5  6  7  8  9  \n=========================================\n";
-        prntAry(array,pFilRow,perLine);
+        prntAry(array);
         cout<<"Are you done? Enter 'y' for Yes. Enter any other key to continue sorting. Then enter your next number to sort."<<endl;
         //Prompt to end loop
         cin>>ans;
@@ -644,7 +644,7 @@ int dg43(string name,short lifepts){
     //Use MarkSort to correctly sort all of the numbers.
     markSrt(array,pFilRow);
     //Print the correct sorted array
-    prntAry(array,pFilRow,perLine);
+    prntAry(array);
     //Output if user made error when sorting
     if(ans=='Y'){
         cout<<"You made a mistake."<<endl;
